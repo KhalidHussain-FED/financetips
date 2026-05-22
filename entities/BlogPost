@@ -1,0 +1,65 @@
+{
+  "name": "BlogPost",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The title of the blog post"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug"
+    },
+    "excerpt": {
+      "type": "string",
+      "description": "Short summary shown in listings"
+    },
+    "content": {
+      "type": "string",
+      "description": "Full HTML content"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Accounting",
+        "Payroll",
+        "Taxes",
+        "Bookkeeping",
+        "Financial Planning"
+      ],
+      "description": "Blog post category"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published"
+      ],
+      "default": "draft"
+    },
+    "author_name": {
+      "type": "string"
+    },
+    "featured_image": {
+      "type": "string"
+    },
+    "read_time": {
+      "type": "number"
+    },
+    "meta_title": {
+      "type": "string",
+      "description": "SEO meta title (50-60 chars ideal)"
+    },
+    "meta_description": {
+      "type": "string",
+      "description": "SEO meta description (150-160 chars)"
+    },
+    "tags": {
+      "type": "string",
+      "description": "Comma-separated tags for SEO"
+    }
+  },
+  "required": [
+    "title"
+  ]
+}
