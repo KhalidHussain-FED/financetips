@@ -13,7 +13,7 @@ const CAT_COLORS = {
 };
 
 export default function PostCard({ post, featured = false }) {
-  const slug = post.slug || post.id;
+  const slug = post.slug;
   const catColor = CAT_COLORS[post.category] || 'bg-gray-100 text-gray-700';
 
   if (featured) {
