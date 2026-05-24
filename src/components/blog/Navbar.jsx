@@ -11,10 +11,9 @@ const TOPICS = [
   { label: 'Financial Planning', href: '/financial-planning' },
 ];
 
-export default function Navbar({ isAdmin }) {
+export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [topicsOpen, setTopicsOpen] = useState(false);
-  const [showNewPost, setShowNewPost] = useState(false);
   const { pathname } = useLocation();
 
   const activeStyle = { backgroundColor: '#FFD300', color: '#1a1a1a' };
@@ -114,27 +113,6 @@ export default function Navbar({ isAdmin }) {
             >
               📧 Contact Us
             </Link>
-
-            {/* Admin section: Checkbox OR New Post button */}
-            {isAdmin && (
-              <>
-                {!showNewPost ? (
-                  <label className="ml-3 flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={showNewPost}
-                      onChange={(e) => setShowNewPost(e.target.checked)}
-                      className="w-4 h-4 accent-black"
-                    />
-                    <span className="text-xs font-semibold text-slate-800">New Post</span>
-                  </label>
-                ) : (
-                  <Link to="/admin" className="ml-3 px-4 py-2 text-sm font-bold rounded-md shadow-sm transition-colors hover:opacity-90" style={{ backgroundColor: '#1a1a1a', color: '#FFD300' }}>
-                    + New Post
-                  </Link>
-                )}
-              </>
-            )}
           </nav>
 
           <button className="lg:hidden p-2 text-slate-800" onClick={() => setOpen(!open)}>
@@ -166,25 +144,6 @@ export default function Navbar({ isAdmin }) {
             
             {/* 6. Contact Us */}
             <Link to="/contact" onClick={() => setOpen(false)} className="block px-3 py-2 text-sm font-semibold text-slate-800 hover:bg-yellow-200 rounded-md transition-colors">📧 Contact Us</Link>
-            
-            {/* Mobile: Checkbox OR New Post button */}
-            {isAdmin && (
-              <>
-                {!showNewPost ? (
-                  <label className="flex items-center gap-2 px-3 py-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={showNewPost}
-                      onChange={(e) => setShowNewPost(e.target.checked)}
-                      className="w-4 h-4 accent-black"
-                    />
-                    <span className="text-sm font-semibold text-slate-800">New Post</span>
-                  </label>
-                ) : (
-                  <Link to="/admin" onClick={() => setOpen(false)} className="block px-3 py-2 text-sm font-bold rounded-md transition-colors" style={{ color: '#1a1a1a', backgroundColor: '#e6be00' }}>+ New Post (Admin)</Link>
-                )}
-              </>
-            )}
           </nav>
         )}
       </div>

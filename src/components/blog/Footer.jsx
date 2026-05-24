@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { TrendingUp, Mail, MapPin } from 'lucide-react';
 
@@ -10,7 +10,9 @@ const TOPIC_LINKS = [
   { label: 'Financial Planning', href: '/financial-planning' },
 ];
 
-export default function Footer() {
+export default function Footer({ isAdmin }) {
+  const [showNewPost, setShowNewPost] = useState(false);
+
   return (
     <footer className="mt-16" style={{ backgroundColor: '#1a1a1a', color: '#ccc' }}>
       {/* Yellow top bar */}
@@ -73,6 +75,32 @@ export default function Footer() {
             </div>
           </div>
         </div>
+
+        {/* Admin section: Checkbox OR New Post button */}
+        {isAdmin && (
+          <div className="mt-8 pt-6 border-t border-slate-800">
+            {!showNewPost ? (
+              <label className="inline-flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={showNewPost}
+                  onChange={(e) => setShowNewPost(e.target.checked)}
+                  className="w-4 h-4"
+                  style={{ accentColor: '#FFD300' }}
+                />
+                <span className="text-xs font-semibold text-slate-400">New Post</span>
+              </label>
+            ) : (
+              <Link 
+                to="/admin" 
+                className="inline-block px-4 py-2 text-sm font-bold rounded-md shadow-sm transition-colors hover:opacity-90" 
+                style={{ backgroundColor: '#FFD300', color: '#1a1a1a' }}
+              >
+                + New Post
+              </Link>
+            )}
+          </div>
+        )}
 
         <div className="mt-10 pt-6 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-slate-600">
           <p>© {new Date().getFullYear()} Finance Ledger Tips. All rights reserved.</p>

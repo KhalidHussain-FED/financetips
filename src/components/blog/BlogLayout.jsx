@@ -19,7 +19,7 @@ export default function BlogLayout() {
       <main className="flex-1">
         <Outlet context={{ isAdmin }} />
       </main>
-      <Footer />
+      <Footer isAdmin={isAdmin} />
     </div>
   );
 }
