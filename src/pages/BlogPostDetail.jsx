@@ -39,11 +39,11 @@ export default function BlogPostDetail() {
   if (isLoading) {
     return (
       <div className="bg-white min-h-screen">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12 space-y-4">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-4">
+          <Skeleton className="w-full h-[400px] rounded-xl" />
           <Skeleton className="h-4 w-48" />
           <Skeleton className="h-10 w-full" />
           <Skeleton className="h-5 w-3/4" />
-          <Skeleton className="h-4 w-56" />
           <div className="space-y-3 mt-8">
             {Array(8).fill(0).map((_, i) => <Skeleton key={i} className="h-4 w-full" />)}
           </div>
@@ -74,84 +74,79 @@ export default function BlogPostDetail() {
   return (
     <article className="bg-white min-h-screen" itemScope itemType="https://schema.org/Article">
 
-      {/* ========== 1. HERO BANNER WITH OVERLAY TEXT ========== */}
+      {/* ========== FULL BANNER - TEXT STARTS FROM MIDDLE ========== */}
       <div className="relative w-full h-[500px] md:h-[600px] overflow-hidden">
+        {/* Banner Image */}
         <img
           src={bannerImage}
           alt={post.title}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover object-center"
           itemProp="image"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-        <div className="absolute inset-0 flex items-end pb-12 md:pb-16">
+        
+        {/* Gradient Overlay - Darker at bottom */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/80" />
+
+        {/* Content - Starts from vertical center */}
+        <div className="absolute inset-0 flex flex-col justify-center pt-16 md:pt-20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 w-full">
-            <nav className="flex items-center gap-1.5 text-sm text-white/80 mb-4" aria-label="Breadcrumb">
-              <Link to="/" className="hover:text-white transition-colors">Home</Link>
-              <ChevronRight className="w-4 h-4" />
-              <Link to="/blog" className="hover:text-white transition-colors">Blog</Link>
+            
+            {/* Breadcrumb */}
+            <nav className="flex items-center gap-1.5 text-sm text-white/70 flex-wrap mb-5" aria-label="Breadcrumb">
+              <Link to="/" className="hover:text-yellow-300 transition-colors">Home</Link>
+              <ChevronRight className="w-4 h-4 text-white/40" />
+              <Link to="/blog" className="hover:text-yellow-300 transition-colors">Blog</Link>
               {post.category && (
                 <>
-                  <ChevronRight className="w-4 h-4" />
-                  <Link to={catHref} className="hover:text-white transition-colors">{post.category}</Link>
+                  <ChevronRight className="w-4 h-4 text-white/40" />
+                  <Link to={catHref} className="hover:text-yellow-300 transition-colors">{post.category}</Link>
                 </>
               )}
             </nav>
+
+            {/* Category Badge */}
             {post.category && (
-              <div className={`inline-block px-4 py-1.5 rounded-full text-sm font-semibold mb-4 ${catColor}`}>
+              <Link to={catHref} className={`inline-block px-4 py-1.5 rounded-full text-sm font-semibold mb-5 ${catColor} hover:opacity-90 transition-opacity`}>
                 {post.category}
-              </div>
+              </Link>
             )}
-            <h1
-              className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white drop-shadow-md"
-              itemProp="headline"
-            >
-              {post.title}
-            </h1>
+
+            {/* Title */}
+           <h1 
+  className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-white drop-shadow-lg mb-6"
+  itemProp="headline"
+>
+  {post.title}
+</h1>
+
+            {/* Meta Info */}
+            <div className="flex flex-wrap items-center gap-5 text-sm text-white/60">
+              {post.author_name && (
+                <span className="flex items-center gap-2" itemProp="author" itemScope itemType="https://schema.org/Person">
+                  <User className="w-4 h-4 text-yellow-400" />
+                  <span itemProp="name">{post.author_name}</span>
+                </span>
+              )}
+              {post.created_date && (
+                <span className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-yellow-400" />
+                  <time dateTime={post.created_date} itemProp="datePublished">
+                    {format(new Date(post.created_date), 'MMMM d, yyyy')}
+                  </time>
+                </span>
+              )}
+              {post.read_time && (
+                <span className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-yellow-400" />
+                  {post.read_time} min read
+                </span>
+              )}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* ========== 2. DESCRIPTION / EXCERPT ========== */}
-      {post.excerpt && (
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 -mt-6 relative z-10">
-          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-10">
-            <p
-              className="text-lg md:text-xl text-slate-600 leading-relaxed"
-              itemProp="description"
-            >
-              {post.excerpt}
-            </p>
-          </div>
-        </div>
-      )}
-
-      {/* ========== 3. META INFORMATION ========== */}
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 pb-6 border-b border-gray-100">
-        <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500">
-          {post.author_name && (
-            <span className="flex items-center gap-2" itemProp="author" itemScope itemType="https://schema.org/Person">
-              <User className="w-4 h-4" />
-              <span itemProp="name">{post.author_name}</span>
-            </span>
-          )}
-          {post.created_date && (
-            <span className="flex items-center gap-2">
-              <Calendar className="w-4 h-4" />
-              <time dateTime={post.created_date} itemProp="datePublished">
-                {format(new Date(post.created_date), 'MMMM d, yyyy')}
-              </time>
-            </span>
-          )}
-          {post.read_time && (
-            <span className="flex items-center gap-2">
-              <Clock className="w-4 h-4" />
-              {post.read_time} min read
-            </span>
-          )}
-        </div>
-      </div>
-
-      {/* ========== 4. ARTICLE CONTENT ========== */}
+      {/* ========== ARTICLE CONTENT ========== */}
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10" itemProp="articleBody">
         {post.content && (
           <div
@@ -179,7 +174,7 @@ export default function BlogPostDetail() {
         )}
       </div>
 
-      {/* ========== 5. TAGS ========== */}
+      {/* ========== TAGS ========== */}
       {post.tags && (
         <div className="max-w-3xl mx-auto px-4 sm:px-6 pb-6">
           <div className="pt-6 border-t border-gray-200">
@@ -200,7 +195,7 @@ export default function BlogPostDetail() {
         </div>
       )}
 
-      {/* ========== 6. SHARE + BACK ========== */}
+      {/* ========== SHARE + BACK ========== */}
       <div className="max-w-3xl mx-auto px-4 sm:px-6 pb-12">
         <div className="pt-6 border-t border-gray-200">
           <div className="flex flex-wrap items-center justify-between gap-4">
@@ -214,10 +209,10 @@ export default function BlogPostDetail() {
                   const title = encodeURIComponent(post.title);
                   return (
                     <>
-                      <a href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold text-white transition-opacity hover:opacity-90" style={{ backgroundColor: '#1877F2' }}>FB</a>
-                      <a href={`https://twitter.com/intent/tweet?url=${url}&text=${title}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold text-white transition-opacity hover:opacity-90 bg-black">X</a>
-                      <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold text-white transition-opacity hover:opacity-90" style={{ backgroundColor: '#0A66C2' }}>in</a>
-                      <a href={`mailto:?subject=${title}&body=Check out this article: ${url}`} className="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold text-white transition-opacity hover:opacity-90 bg-slate-600">Email</a>
+                      <a href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-full text-xs font-semibold text-white hover:opacity-90" style={{ backgroundColor: '#1877F2' }}>FB</a>
+                      <a href={`https://twitter.com/intent/tweet?url=${url}&text=${title}`} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-full text-xs font-semibold text-white hover:opacity-90 bg-black">X</a>
+                      <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-full text-xs font-semibold text-white hover:opacity-90" style={{ backgroundColor: '#0A66C2' }}>in</a>
+                      <a href={`mailto:?subject=${title}&body=Check out this article: ${url}`} className="px-3 py-1.5 rounded-full text-xs font-semibold text-white hover:opacity-90 bg-slate-600">Email</a>
                     </>
                   );
                 })()}

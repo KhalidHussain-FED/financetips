@@ -74,7 +74,6 @@ export default function PostCard({ post, featured = false }) {
     );
   }
 
-  // Regular Card
   return (
     <article className="group rounded-lg overflow-hidden border border-border hover:shadow-md transition-shadow bg-white flex flex-col h-full">
       <div className="aspect-[16/9] overflow-hidden bg-muted">
