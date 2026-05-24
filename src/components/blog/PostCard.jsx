@@ -40,7 +40,7 @@ export default function PostCard({ post, featured = false }) {
             {post.created_date && <span>{format(new Date(post.created_date), 'MMM d, yyyy')}</span>}
             {post.read_time && <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{post.read_time} min</span>}
           </div>
-          <Link to={`/blog/${slug}`} className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
+          <Link to={`/${slug}`} className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
             Read Article <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -71,7 +71,7 @@ export default function PostCard({ post, featured = false }) {
             {post.created_date && <span>{format(new Date(post.created_date), 'MMM d, yyyy')}</span>}
             {post.read_time && <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{post.read_time} min</span>}
           </div>
-          <Link to={`/blog/${slug}`} className="text-xs font-semibold text-primary hover:underline flex items-center gap-0.5">
+          <Link to={`/${slug}`} className="text-xs font-semibold text-primary hover:underline flex items-center gap-0.5">
             Read <ArrowRight className="w-3 h-3" />
           </Link>
         </div>
