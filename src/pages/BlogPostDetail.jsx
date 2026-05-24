@@ -1,7 +1,7 @@
 import React from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, Clock, Calendar, User, Tag, ChevronRight, Share2 } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { format } from 'date-fns';
@@ -24,7 +24,8 @@ const CAT_SLUG = {
 };
 
 export default function BlogPostDetail() {
-  const slug = window.location.pathname.split('/blog/')[1];
+  // ✅ FIXED: Use useParams() instead of window.location.pathname.split()
+  const { slug } = useParams();
 
   const { data: post, isLoading } = useQuery({
     queryKey: ['blog-post', slug],
