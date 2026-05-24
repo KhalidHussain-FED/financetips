@@ -39,7 +39,8 @@ export default function BlogPostDetail() {
   if (isLoading) {
     return (
       <div className="bg-white min-h-screen">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12 space-y-4">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-4">
+          <Skeleton className="w-full aspect-[2/1] rounded-xl" />
           <Skeleton className="h-4 w-48" />
           <Skeleton className="h-10 w-full" />
           <Skeleton className="h-5 w-3/4" />
@@ -74,90 +75,93 @@ export default function BlogPostDetail() {
   return (
     <article className="bg-white min-h-screen" itemScope itemType="https://schema.org/Article">
       
-      {/* ========== HERO BANNER SECTION ========== */}
-      <div className="relative w-full overflow-hidden" style={{ height: '420px' }}>
-        {/* Banner Image */}
-        <img
-          src={bannerImage}
-          alt={post.title}
-          className="absolute inset-0 w-full h-full object-cover object-center"
-          itemProp="image"
-        />
-        
-        {/* Gradient Overlay - darker at bottom for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-900/60 to-slate-900/30" />
-        
-        {/* Content Overlay */}
-        <div className="absolute inset-0 flex flex-col justify-end">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 pb-10 w-full">
-            
-            {/* Breadcrumb - on top of banner */}
-            <nav className="flex items-center gap-1.5 text-xs text-slate-300 flex-wrap mb-4" aria-label="Breadcrumb">
-              <Link to="/" className="hover:text-yellow-300 transition-colors">Home</Link>
-              <ChevronRight className="w-3 h-3 text-slate-500" />
-              <Link to="/blog" className="hover:text-yellow-300 transition-colors">Blog</Link>
-              {post.category && (
-                <>
-                  <ChevronRight className="w-3 h-3 text-slate-500" />
-                  <Link to={catHref} className="hover:text-yellow-300 transition-colors">{post.category}</Link>
-                </>
-              )}
-            </nav>
-
-            {/* Category Badge */}
-            {post.category && (
-              <Link to={catHref} className={`inline-block px-3 py-1 rounded-full text-xs font-bold mb-4 ${catColor} hover:opacity-90 transition-opacity`}>
-                {post.category}
-              </Link>
-            )}
-
-            {/* H1 Title */}
-            <h1 
-              className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-white mb-3 drop-shadow-lg"
-              itemProp="headline"
-            >
-              {post.title}
-            </h1>
-
-            {/* Description */}
-            {post.excerpt && (
-              <p 
-                className="text-sm sm:text-base text-slate-200 leading-relaxed mb-5 max-w-2xl drop-shadow-md"
-                itemProp="description"
-              >
-                {post.excerpt}
-              </p>
-            )}
-
-            {/* Meta Info */}
-            <div className="flex flex-wrap items-center gap-5 text-xs text-slate-300">
-              {post.author_name && (
-                <span className="flex items-center gap-1.5" itemProp="author" itemScope itemType="https://schema.org/Person">
-                  <User className="w-3.5 h-3.5 text-yellow-400" />
-                  <span itemProp="name">{post.author_name}</span>
-                </span>
-              )}
-              {post.created_date && (
-                <span className="flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5 text-yellow-400" />
-                  <time dateTime={post.created_date} itemProp="datePublished">
-                    {format(new Date(post.created_date), 'MMMM d, yyyy')}
-                  </time>
-                </span>
-              )}
-              {post.read_time && (
-                <span className="flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-yellow-400" />
-                  {post.read_time} min read
-                </span>
-              )}
-            </div>
-          </div>
+      {/* ========== 1. BANNER IMAGE (Full Width, No Text) ========== */}
+      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8">
+        <div className="w-full aspect-[2/1] rounded-xl overflow-hidden shadow-md">
+          <img
+            src={bannerImage}
+            alt={post.title}
+            className="w-full h-full object-cover object-center"
+            itemProp="image"
+          />
         </div>
       </div>
 
-      {/* ========== CONTENT BODY ========== */}
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10" itemProp="articleBody">
+      {/* ========== 2. BREADCRUMB (Below Image) ========== */}
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 pt-6">
+        <nav className="flex items-center gap-1.5 text-xs text-slate-500 flex-wrap" aria-label="Breadcrumb">
+          <Link to="/" className="hover:text-slate-900 transition-colors">Home</Link>
+          <ChevronRight className="w-3 h-3 text-slate-400" />
+          <Link to="/blog" className="hover:text-slate-900 transition-colors">Blog</Link>
+          {post.category && (
+            <>
+              <ChevronRight className="w-3 h-3 text-slate-400" />
+              <Link to={catHref} className="hover:text-slate-900 transition-colors">{post.category}</Link>
+            </>
+          )}
+          <ChevronRight className="w-3 h-3 text-slate-400" />
+          <span className="text-slate-400 truncate max-w-[200px]">{post.title}</span>
+        </nav>
+      </div>
+
+      {/* ========== 3. HEADER: Category Badge + H1 Title ========== */}
+      <header className="max-w-3xl mx-auto px-4 sm:px-6 pt-5">
+        {/* Category Badge */}
+        {post.category && (
+          <Link to={catHref} className={`inline-block px-3 py-1 rounded-full text-xs font-bold mb-4 ${catColor} hover:opacity-80 transition-opacity`}>
+            {post.category}
+          </Link>
+        )}
+
+        {/* H1 Title */}
+        <h1 
+          className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-slate-900 mb-0"
+          itemProp="headline"
+        >
+          {post.title}
+        </h1>
+      </header>
+
+      {/* ========== 4. DESCRIPTION SECTION (Separate) ========== */}
+      {post.excerpt && (
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 pt-4">
+          <p 
+            className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl"
+            itemProp="description"
+          >
+            {post.excerpt}
+          </p>
+        </div>
+      )}
+
+      {/* ========== 5. META INFORMATION ========== */}
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 pt-4 pb-6 border-b border-gray-100">
+        <div className="flex flex-wrap items-center gap-5 text-xs text-slate-500">
+          {post.author_name && (
+            <span className="flex items-center gap-1.5" itemProp="author" itemScope itemType="https://schema.org/Person">
+              <User className="w-3.5 h-3.5 text-slate-400" />
+              <span itemProp="name">{post.author_name}</span>
+            </span>
+          )}
+          {post.created_date && (
+            <span className="flex items-center gap-1.5">
+              <Calendar className="w-3.5 h-3.5 text-slate-400" />
+              <time dateTime={post.created_date} itemProp="datePublished">
+                {format(new Date(post.created_date), 'MMMM d, yyyy')}
+              </time>
+            </span>
+          )}
+          {post.read_time && (
+            <span className="flex items-center gap-1.5">
+              <Clock className="w-3.5 h-3.5 text-slate-400" />
+              {post.read_time} min read
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* ========== 6. CONTENT BODY ========== */}
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8" itemProp="articleBody">
         {post.content && (
           <div
             className="prose prose-lg max-w-none 
@@ -221,7 +225,7 @@ export default function BlogPostDetail() {
         )}
       </div>
 
-      {/* ========== FOOTER: TAGS + SHARE ========== */}
+      {/* ========== 7. FOOTER: TAGS + SHARE ========== */}
       <div className="max-w-3xl mx-auto px-4 sm:px-6 pb-12">
         
         {/* Tags */}
