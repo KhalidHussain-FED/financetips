@@ -2,49 +2,41 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    
-    <!-- Favicon using emoji - no files needed -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>" />
-    
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FFD300'/><text y='.75em' font-size='70' text-anchor='middle' x='50'>📊</text></svg>" />
-    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons.svg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#1E3A5F" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="google-site-verification" content="VlbkRBKpaERJXRNNH0asZHzlJdUPk-BqThON-BLrplM" />
-    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-
-    <!-- Primary SEO -->
-    <title>Finance Ledger Tips – Accounting, Payroll, Taxes & Bookkeeping Guides</title>
-    <meta name="description" content="Expert guides on Accounting, Payroll, Taxes, and Bookkeeping for small businesses. Learn how to manage your finances, reduce taxes, and stay compliant." />
-    <meta name="keywords" content="accounting tips, payroll guide, how to do taxes, bookkeeping for small business, small business accounting, tax deductions, payroll processing, financial planning, IRS filing, small business taxes, bookkeeping software, accounts payable, accounts receivable, self employed taxes, quarterly estimated taxes" />
+    <title>Finance Ledger Tips – Free Accounting, Payroll, Taxes & Bookkeeping Guides</title>
+    <meta name="description" content="Free expert guides on accounting, payroll processing, tax filing, and bookkeeping for small businesses and self-employed professionals. Learn how to manage finances, maximize tax deductions, and stay IRS compliant with step-by-step tutorials." />
+    <meta name="keywords" content="accounting tips, payroll guide, how to file taxes, bookkeeping for small business, small business accounting, tax deductions 2024, payroll processing guide, financial planning, IRS filing help, self employed taxes, quarterly estimated taxes, bookkeeping software reviews, double-entry accounting, accounts payable process, accounts receivable management, W-2 vs 1099, Schedule C instructions, small business tax credits, profit and loss statement, balance sheet template" />
     <meta name="author" content="Finance Ledger Tips" />
-
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://financeledgertips.com/" />
-    <meta property="og:title" content="Finance Ledger Tips – Accounting, Payroll, Taxes & Bookkeeping" />
-    <meta property="og:description" content="Practical, plain-English guides on Accounting, Payroll, Taxes, and Bookkeeping for small businesses and individuals." />
+    <meta property="og:title" content="Finance Ledger Tips – Free Accounting, Payroll, Taxes & Bookkeeping Guides" />
+    <meta property="og:description" content="Free, practical guides on accounting, payroll, taxes, and bookkeeping. Step-by-step tutorials for small businesses and self-employed professionals to manage finances and stay compliant." />
     <meta property="og:image" content="https://financeledgertips.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="Finance Ledger Tips" />
-
-    <!-- Twitter Card -->
+    <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Finance Ledger Tips – Accounting, Payroll, Taxes & Bookkeeping" />
-    <meta name="twitter:description" content="Expert financial guides for small businesses. Accounting, Payroll, Taxes, and Bookkeeping explained in plain English." />
+    <meta name="twitter:title" content="Finance Ledger Tips – Free Accounting, Payroll, Taxes & Bookkeeping Guides" />
+    <meta name="twitter:description" content="Free step-by-step guides on accounting, payroll processing, tax filing, and bookkeeping. Built for small business owners and self-employed professionals." />
     <meta name="twitter:image" content="https://financeledgertips.com/og-image.jpg" />
-
-    <!-- Canonical -->
+    <meta name="twitter:site" content="@financeledger" />
     <link rel="canonical" href="https://financeledgertips.com/" />
-
-    <!-- Schema.org structured data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Finance Ledger Tips",
       "url": "https://financeledgertips.com",
-      "description": "Expert guides on Accounting, Payroll, Taxes, and Bookkeeping for small businesses.",
+      "description": "Free expert guides on accounting, payroll, taxes, and bookkeeping for small businesses and self-employed professionals.",
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://financeledgertips.com/blog?q={search_term_string}",
@@ -60,40 +52,44 @@
       "name": "Finance Ledger Tips",
       "url": "https://financeledgertips.com",
       "logo": "https://financeledgertips.com/logo.png",
+      "description": "Free educational platform providing guides on accounting, payroll, taxes, and bookkeeping.",
       "contactPoint": {
         "@type": "ContactPoint",
         "email": "info@financeledgertips.com",
-        "contactType": "customer support"
-      }
+        "contactType": "customer support",
+        "availableLanguage": ["English"]
+      },
+      "sameAs": [
+        "https://twitter.com/financeledger",
+        "https://facebook.com/financeledgertips",
+        "https://linkedin.com/company/financeledgertips"
+      ]
     }
     </script>
 
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PNWRQ3P9');</script>
-<!-- End Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PNWRQ3P9');</script>
+    <!-- End Google Tag Manager -->
 
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-050W2WJ8H0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-050W2WJ8H0');
-</script>
-
+    <!-- Google Analytics (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-050W2WJ8H0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-050W2WJ8H0');
+    </script>
   </head>
   <body>
-
     <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNWRQ3P9"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNWRQ3P9"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
