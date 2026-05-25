@@ -60,3 +60,14 @@
 
 .prose h2 { font-family: var(--font-heading); }
 .prose h3 { font-family: var(--font-heading); }
+
+
+body h1,h2,h3{
+    font-weight:700;
+}
+
+.prose a{
+    color:#000000;
+    font-weight:900;
+    text-decoration:underline;
+}

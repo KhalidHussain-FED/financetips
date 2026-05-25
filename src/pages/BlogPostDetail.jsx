@@ -147,7 +147,7 @@ export default function BlogPostDetail() {
       </div>
 
       {/* ========== ARTICLE CONTENT ========== */}
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10" itemProp="articleBody">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10" itemProp="articleBody">
         {post.content && (
           <div
             className="prose prose-lg max-w-none 
@@ -176,7 +176,7 @@ export default function BlogPostDetail() {
 
       {/* ========== TAGS ========== */}
       {post.tags && (
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 pb-6">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 pb-6">
           <div className="pt-6 border-t border-gray-200">
             <div className="flex flex-wrap items-center gap-2">
               <Tag className="w-4 h-4 text-slate-400" />
