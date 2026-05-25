@@ -16,7 +16,7 @@ export default function TaxCalculators() {
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0" style={{ background: 'rgba(10,20,40,0.75)' }} />
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
           <nav className="text-xs text-slate-300 mb-5 flex items-center gap-1">
             <Link to="/" className="hover:text-yellow-300 transition-colors">Home</Link>
             <ChevronRight className="w-3 h-3" />

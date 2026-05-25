@@ -85,7 +85,7 @@ export default function ContactUs() {
       </div>
 
       {/* Contact Section */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Contact Form - Takes 2 columns */}
           <div className="lg:col-span-2">
