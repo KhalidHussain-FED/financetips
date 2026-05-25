@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, User, MessageSquare, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, User, MessageSquare, CheckCircle, AlertCircle, Globe, BookOpen } from 'lucide-react';
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
@@ -42,22 +42,22 @@ export default function ContactUs() {
     {
       icon: <Mail className="w-5 h-5" />,
       title: 'Email Us',
-      details: 'contact@financeledgertips.com',
+      details: 'info@financeledgertips.com',
       description: 'We respond within 24 hours',
       color: 'bg-blue-100 text-blue-600',
     },
     {
-      icon: <Phone className="w-5 h-5" />,
-      title: 'Call Us',
-      details: '+92 309 6066414',
-      description: 'Mon-Fri 9am-5pm EST',
+      icon: <Globe className="w-5 h-5" />,
+      title: 'Website',
+      details: 'financeledgertips.com',
+      description: 'Available 24/7 worldwide',
       color: 'bg-green-100 text-green-600',
     },
     {
-      icon: <MapPin className="w-5 h-5" />,
-      title: 'Our Location',
-      details: '983 Captain Jack Drive #1',
-      description: 'Steamboat Springs, CO 80487, USA',
+      icon: <BookOpen className="w-5 h-5" />,
+      title: 'Knowledge Base',
+      details: 'Browse our blog & guides',
+      description: 'Free educational resources',
       color: 'bg-purple-100 text-purple-600',
     },
   ];
@@ -78,8 +78,8 @@ export default function ContactUs() {
             Get in Touch
           </h1>
           <p className="text-slate-200 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-            Have a question, suggestion, or just want to say hello? We'd love to hear from you. 
-            Fill out the form below and we'll get back to you as soon as possible.
+            Have a question about accounting, payroll, taxes, or bookkeeping? We'd love to hear from you. 
+            Fill out the form below and our team will get back to you as soon as possible.
           </p>
         </div>
       </div>
@@ -116,7 +116,7 @@ export default function ContactUs() {
                   <div>
                     <div className="text-sm font-semibold text-red-800">Failed to Send Message</div>
                     <p className="text-xs text-red-700 mt-1">
-                      Please try again or email us directly at contact@financeledgertips.com
+                      Please try again or email us directly at info@financeledgertips.com
                     </p>
                   </div>
                 </div>
@@ -180,7 +180,7 @@ export default function ContactUs() {
                     <option value="Tax Question">Tax Question</option>
                     <option value="Bookkeeping Support">Bookkeeping Support</option>
                     <option value="Financial Planning">Financial Planning</option>
-                    <option value="Partnership Opportunity">Partnership Opportunity</option>
+                    <option value="Content Suggestion">Content Suggestion</option>
                     <option value="Feedback">Feedback / Suggestion</option>
                     <option value="Other">Other</option>
                   </select>
@@ -256,57 +256,104 @@ export default function ContactUs() {
                   We typically respond to all inquiries within 24 hours during business days.
                 </p>
                 <div className="bg-white/10 rounded-lg p-3">
-                  <div className="text-xs text-slate-400">Business Hours</div>
+                  <div className="text-xs text-slate-400">Response Time</div>
                   <div className="text-sm font-semibold text-white mt-1">
-                    Monday - Friday
+                    Within 24 Hours
                   </div>
                   <div className="text-xs text-slate-400 mt-1">
-                    9:00 AM - 5:00 PM EST
+                    Monday - Friday
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Address Card */}
+            {/* About Our Content */}
             <div className="bg-white rounded-xl border-2 p-5 shadow-sm" style={{ borderColor: '#e5e7eb' }}>
               <h3 className="text-sm font-semibold text-slate-800 mb-3 flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-red-500" />
-                Visit Our Office
+                <BookOpen className="w-4 h-4 text-purple-500" />
+                Our Content
               </h3>
-              <div className="text-xs text-slate-600 leading-relaxed space-y-1">
-                <p className="font-medium">Finance Ledger Tips</p>
-                <p>983 Captain Jack Drive #1</p>
-                <p>Steamboat Springs, CO 80487</p>
-                <p>United States</p>
+              <div className="text-xs text-slate-600 leading-relaxed space-y-2">
+                <p>Finance Ledger Tips provides free educational resources on:</p>
+                <ul className="space-y-1 ml-4">
+                  <li className="flex items-start gap-1">
+                    <span className="text-yellow-500 mt-0.5">•</span>
+                    <span>Accounting & Bookkeeping</span>
+                  </li>
+                  <li className="flex items-start gap-1">
+                    <span className="text-yellow-500 mt-0.5">•</span>
+                    <span>Payroll Processing</span>
+                  </li>
+                  <li className="flex items-start gap-1">
+                    <span className="text-yellow-500 mt-0.5">•</span>
+                    <span>Tax Filing & Planning</span>
+                  </li>
+                  <li className="flex items-start gap-1">
+                    <span className="text-yellow-500 mt-0.5">•</span>
+                    <span>Financial Management</span>
+                  </li>
+                </ul>
+                <div className="mt-3 pt-3 border-t border-gray-100">
+                  <a 
+                    href="/blog" 
+                    className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1"
+                  >
+                    Browse our guides →
+                  </a>
+                </div>
               </div>
-              <div className="mt-3 pt-3 border-t border-gray-100">
-                <a 
-                  href="tel:+923096066414" 
-                  className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1"
-                >
-                  <Phone className="w-3 h-3" />
-                  +92 309 6066414
-                </a>
+            </div>
+
+            {/* Disclaimer Card */}
+            <div className="bg-yellow-50 rounded-xl border-2 p-4" style={{ borderColor: '#FFD300' }}>
+              <div className="flex items-start gap-2">
+                <AlertCircle className="w-4 h-4 text-yellow-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="text-xs font-semibold text-slate-800">Important Note</h4>
+                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                    We provide educational content only. For specific financial advice, 
+                    please consult with a qualified professional.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Map Section */}
-        <div className="mt-8 bg-white rounded-xl border-2 p-2 shadow-sm overflow-hidden" style={{ borderColor: '#e5e7eb' }}>
-          <div className="aspect-video bg-gray-100 rounded-lg flex items-center justify-center">
-            <div className="text-center">
-              <MapPin className="w-8 h-8 text-red-400 mx-auto mb-2" />
-              <p className="text-sm font-semibold text-slate-700">983 Captain Jack Drive #1</p>
-              <p className="text-xs text-slate-500">Steamboat Springs, CO 80487, United States</p>
-              <a 
-                href="https://maps.google.com/?q=983+Captain+Jack+Drive+Steamboat+Springs+CO+80487" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-block mt-2 text-xs font-semibold text-blue-600 hover:text-blue-700"
-              >
-                View on Google Maps →
-              </a>
+        {/* FAQ Section */}
+        <div className="mt-12">
+          <div className="bg-white rounded-xl border-2 p-6 sm:p-8 shadow-sm" style={{ borderColor: '#e5e7eb' }}>
+            <h2 className="font-heading text-2xl font-bold text-slate-900 mb-2 text-center">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-sm text-slate-500 mb-8 text-center">
+              Quick answers to common questions
+            </p>
+            
+            <div className="grid sm:grid-cols-2 gap-4">
+              {[
+                {
+                  q: 'What topics do you cover?',
+                  a: 'We cover accounting, payroll, taxes, bookkeeping, and financial planning for small businesses and individuals.'
+                },
+                {
+                  q: 'Is your content free?',
+                  a: 'Yes! All our educational articles, guides, and resources are completely free to access.'
+                },
+                {
+                  q: 'How often do you publish?',
+                  a: 'We publish new articles weekly covering the latest in finance, tax laws, and business tips.'
+                },
+                {
+                  q: 'Can I suggest a topic?',
+                  a: 'Absolutely! Use our contact form to suggest topics you\'d like us to cover.'
+                },
+              ].map((faq, i) => (
+                <div key={i} className="bg-gray-50 rounded-lg p-4">
+                  <h4 className="text-sm font-semibold text-slate-800 mb-1">{faq.q}</h4>
+                  <p className="text-xs text-slate-600 leading-relaxed">{faq.a}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
