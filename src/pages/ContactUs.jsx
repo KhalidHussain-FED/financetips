@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, User, MessageSquare, CheckCircle, AlertCircle, Globe, BookOpen } from 'lucide-react';
+import { Mail, Send, User, MessageSquare, CheckCircle, AlertCircle, Globe, BookOpen } from 'lucide-react';
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
@@ -24,14 +24,27 @@ export default function ContactUs() {
     setLoading(true);
     setStatus(null);
 
-    // Simulate form submission (replace with actual API call)
     try {
-      // Example: await fetch('/api/contact', { method: 'POST', body: JSON.stringify(formData) });
-      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
-      
-      setStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      // Send to your backend API which will use nodemailer
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setStatus('error');
+        console.error('Server error:', data.error);
+      }
     } catch (error) {
+      console.error('Network error:', error);
       setStatus('error');
     } finally {
       setLoading(false);
