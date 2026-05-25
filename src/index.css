@@ -71,3 +71,9 @@ body h1,h2,h3{
     font-weight:900;
     text-decoration:underline;
 }
+
+
+footer.mt-16 {
+    border-top: 10px solid ;
+    margin-top: 0rem;
+}  
