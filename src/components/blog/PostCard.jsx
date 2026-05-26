@@ -16,6 +16,24 @@ export default function PostCard({ post, featured = false }) {
   const slug = post.slug || post.id;
   const catColor = CAT_COLORS[post.category] || 'bg-gray-100 text-gray-700';
 
+  // Fallback excerpt: generate from content if excerpt is missing
+  const getExcerpt = () => {
+    if (post.excerpt && post.excerpt.trim() !== '') {
+      return post.excerpt;
+    }
+    if (post.content) {
+      // Strip HTML tags and get first 150 characters
+      const plainText = post.content.replace(/<[^>]*>/g, '');
+      return plainText.substring(0, 150) + (plainText.length > 150 ? '...' : '');
+    }
+    return null;
+  };
+
+  const displayExcerpt = getExcerpt();
+
+  // Read time fallback
+  const readTime = post.read_time || Math.ceil((post.content?.split(' ').length || 0) / 200);
+
   if (featured) {
     return (
       <article className="grid md:grid-cols-5 gap-0 rounded-xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-shadow">
@@ -44,9 +62,9 @@ export default function PostCard({ post, featured = false }) {
             {post.title}
           </h2>
 
-          {post.excerpt && (
+          {displayExcerpt && (
             <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3 mb-4">
-              {post.excerpt}
+              {displayExcerpt}
             </p>
           )}
 
@@ -55,12 +73,10 @@ export default function PostCard({ post, featured = false }) {
             {post.created_date && (
               <span>{format(new Date(post.created_date), 'MMM d, yyyy')}</span>
             )}
-            {post.read_time && (
-              <span className="flex items-center gap-1">
-                <Clock className="w-3 h-3" />
-                {post.read_time} min
-              </span>
-            )}
+            <span className="flex items-center gap-1">
+              <Clock className="w-3 h-3" />
+              {readTime} min
+            </span>
           </div>
 
           <Link
@@ -101,9 +117,9 @@ export default function PostCard({ post, featured = false }) {
           {post.title}
         </h3>
 
-        {post.excerpt && (
+        {displayExcerpt && (
           <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 mb-3">
-            {post.excerpt}
+            {displayExcerpt}
           </p>
         )}
 
@@ -112,12 +128,10 @@ export default function PostCard({ post, featured = false }) {
             {post.created_date && (
               <span>{format(new Date(post.created_date), 'MMM d, yyyy')}</span>
             )}
-            {post.read_time && (
-              <span className="flex items-center gap-1">
-                <Clock className="w-3 h-3" />
-                {post.read_time} min
-              </span>
-            )}
+            <span className="flex items-center gap-1">
+              <Clock className="w-3 h-3" />
+              {readTime} min
+            </span>
           </div>
 
           <Link
