@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import PostCard from '@/components/blog/PostCard';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Search, ChevronRight } from 'lucide-react';
-import SEO from "src/components/SEO/SEO";
+import SEO from "../components/SEO/SEO";
 
 const CATEGORY_MAP = {
   '/accounting': 'Accounting',
