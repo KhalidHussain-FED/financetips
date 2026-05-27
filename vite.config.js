@@ -7,7 +7,7 @@ import path from 'path';
 export default defineConfig({
   logLevel: 'error',
 
-  // ✅ Add Path Alias for @/
+  // ✅ Path Alias for @/
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
