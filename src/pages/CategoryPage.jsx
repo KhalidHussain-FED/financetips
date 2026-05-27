@@ -6,7 +6,7 @@ import PostCard from '@/components/blog/PostCard';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Search, ChevronRight } from 'lucide-react';
 
-// ✅ FINAL FIXED IMPORT - Relative Path (Correct for your folder structure)
+// ✅ CORRECT IMPORT - Matches your folder structure
 import SEO from '../../components/SEO/SEO';
 
 const CATEGORY_MAP = {
@@ -16,9 +16,6 @@ const CATEGORY_MAP = {
   '/bookkeeping': 'Bookkeeping',
   '/financial-planning': 'Financial Planning',
 };
-
-const CATEGORY_DESC = { /* ... your existing descriptions */ };
-const CAT_ICONS = { /* ... your existing icons */ };
 
 export default function CategoryPage() {
   const { pathname } = useLocation();
@@ -76,13 +73,10 @@ export default function CategoryPage() {
 
   return (
     <>
-      {/* SEO Component */}
       <SEO pageType="category" slug={slug} />
 
       <div className="bg-gray-50 min-h-screen">
-        {/* ==================== YOUR MAIN CONTENT GOES HERE ==================== */}
-        {/* Add your header, category title, search bar, post grid, etc. */}
-        {/* ... rest of your CategoryPage content ... */}
+        {/* Your page content goes here */}
       </div>
     </>
   );
