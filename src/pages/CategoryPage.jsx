@@ -53,7 +53,7 @@ export default function CategoryPage() {
     setSearch(inputVal.trim());
   };
 
-  // CATEGORY NOT FOUND
+  // Handle category not found
   if (!category) {
     return (
       <div className="bg-gray-50 min-h-screen flex items-center justify-center">
