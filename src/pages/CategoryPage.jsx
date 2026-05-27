@@ -6,8 +6,8 @@ import PostCard from '@/components/blog/PostCard';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Search, ChevronRight } from 'lucide-react';
 
-// ✅ FIXED IMPORT (THIS WAS YOUR ERROR)
-import SEO from '../components/SEO/SEO';
+// ✅ CORRECTED IMPORT (This was causing the build error)
+import SEO from '@/components/SEO/SEO';
 
 const CATEGORY_MAP = {
   '/accounting': 'Accounting',
