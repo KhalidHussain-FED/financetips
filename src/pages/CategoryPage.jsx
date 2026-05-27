@@ -6,8 +6,8 @@ import PostCard from '@/components/blog/PostCard';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Search, ChevronRight } from 'lucide-react';
 
-// ✅ CORRECTED IMPORT (This was causing the build error)
-import SEO from '@/components/SEO/SEO';
+// ✅ FINAL FIXED IMPORT - Relative Path (Correct for your folder structure)
+import SEO from '../../components/SEO/SEO';
 
 const CATEGORY_MAP = {
   '/accounting': 'Accounting',
@@ -76,11 +76,13 @@ export default function CategoryPage() {
 
   return (
     <>
-      {/* SEO */}
+      {/* SEO Component */}
       <SEO pageType="category" slug={slug} />
 
       <div className="bg-gray-50 min-h-screen">
-        {/* rest of your code stays SAME */}
+        {/* ==================== YOUR MAIN CONTENT GOES HERE ==================== */}
+        {/* Add your header, category title, search bar, post grid, etc. */}
+        {/* ... rest of your CategoryPage content ... */}
       </div>
     </>
   );
