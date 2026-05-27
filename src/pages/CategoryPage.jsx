@@ -6,12 +6,11 @@ import { useQuery } from '@tanstack/react-query';
 import { Search, ChevronRight } from 'lucide-react';
 
 import { base44 } from '@/api/base44Client';
-
 import PostCard from '@/components/blog/PostCard';
 import { Skeleton } from '@/components/ui/skeleton';
 
-// ✅ CORRECT IMPORT
-import SEO from '../components/SEO/SEO';
+// ✅ Recommended SEO Import
+import SEO from '@/components/SEO/SEO';
 
 const CATEGORY_MAP = {
   '/accounting': 'Accounting',
@@ -23,9 +22,7 @@ const CATEGORY_MAP = {
 
 export default function CategoryPage() {
   const { pathname } = useLocation();
-
   const category = CATEGORY_MAP[pathname];
-
   const slug = pathname.replace('/', '');
 
   const [search, setSearch] = useState('');
@@ -33,7 +30,6 @@ export default function CategoryPage() {
 
   const { data: posts = [], isLoading } = useQuery({
     queryKey: ['blog-posts-cat', category],
-
     queryFn: () =>
       base44.entities.BlogPost.filter(
         {
@@ -43,15 +39,14 @@ export default function CategoryPage() {
         '-created_date',
         100
       ),
-
     enabled: !!category,
   });
 
   const filtered = posts.filter((post) => {
-    const q = search.toLowerCase();
+    const q = search.toLowerCase().trim();
+    if (!q) return true;
 
     return (
-      !q ||
       post.title?.toLowerCase().includes(q) ||
       post.excerpt?.toLowerCase().includes(q) ||
       post.tags?.toLowerCase().includes(q)
@@ -71,7 +66,6 @@ export default function CategoryPage() {
           <h1 className="text-3xl font-bold text-slate-800 mb-4">
             Category Not Found
           </h1>
-
           <Link
             to="/blog"
             className="inline-flex items-center gap-2 text-sm font-semibold hover:underline"
@@ -86,33 +80,26 @@ export default function CategoryPage() {
 
   return (
     <>
-      {/* SEO */}
       <SEO pageType="category" slug={slug} />
 
       <div className="bg-gray-50 min-h-screen">
-        {/* HERO */}
+        {/* HERO SECTION */}
         <section className="bg-white border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 py-12">
             {/* Breadcrumb */}
-            <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
-              <Link to="/" className="hover:text-black">
+            <div className="flex items-center gap-2 text-sm text-gray-500 mb-6">
+              <Link to="/" className="hover:text-black transition-colors">
                 Home
               </Link>
-
               <ChevronRight size={14} />
-
-              <Link to="/blog" className="hover:text-black">
+              <Link to="/blog" className="hover:text-black transition-colors">
                 Blog
               </Link>
-
               <ChevronRight size={14} />
-
-              <span className="text-black font-medium">
-                {category}
-              </span>
+              <span className="text-black font-medium">{category}</span>
             </div>
 
-            {/* TITLE */}
+            {/* Title & Description */}
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
               {category} Articles
             </h1>
@@ -122,7 +109,7 @@ export default function CategoryPage() {
               {category.toLowerCase()}.
             </p>
 
-            {/* SEARCH */}
+            {/* Search Form */}
             <form
               onSubmit={handleSearch}
               className="mt-8 flex flex-col sm:flex-row gap-3 max-w-xl"
@@ -132,19 +119,18 @@ export default function CategoryPage() {
                   size={18}
                   className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
                 />
-
                 <input
                   type="text"
                   value={inputVal}
                   onChange={(e) => setInputVal(e.target.value)}
                   placeholder={`Search ${category} articles...`}
-                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                 />
               </div>
 
               <button
                 type="submit"
-                className="px-6 py-3 rounded-xl bg-black text-white font-semibold hover:opacity-90 transition"
+                className="px-8 py-3 rounded-xl bg-black text-white font-semibold hover:bg-gray-800 transition"
               >
                 Search
               </button>
@@ -152,15 +138,12 @@ export default function CategoryPage() {
           </div>
         </section>
 
-        {/* POSTS */}
+        {/* POSTS SECTION */}
         <section className="max-w-7xl mx-auto px-4 py-12">
           {isLoading ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[...Array(6)].map((_, index) => (
-                <Skeleton
-                  key={index}
-                  className="h-[420px] rounded-2xl"
-                />
+              {[...Array(6)].map((_, i) => (
+                <Skeleton key={i} className="h-[420px] rounded-2xl" />
               ))}
             </div>
           ) : filtered.length === 0 ? (
@@ -168,24 +151,17 @@ export default function CategoryPage() {
               <h2 className="text-2xl font-bold text-slate-800 mb-3">
                 No Articles Found
               </h2>
-
-              <p className="text-gray-600">
-                Try another search keyword.
-              </p>
+              <p className="text-gray-600">Try a different search term.</p>
             </div>
           ) : (
             <>
               <div className="mb-8 text-sm text-gray-500">
-                Showing {filtered.length} article
-                {filtered.length !== 1 ? 's' : ''}
+                Showing {filtered.length} article{filtered.length !== 1 ? 's' : ''}
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filtered.map((post) => (
-                  <PostCard
-                    key={post.id}
-                    post={post}
-                  />
+                  <PostCard key={post.id} post={post} />
                 ))}
               </div>
             </>
