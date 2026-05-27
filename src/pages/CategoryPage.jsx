@@ -53,6 +53,7 @@ export default function CategoryPage() {
     setSearch(inputVal.trim());
   };
 
+  // CATEGORY NOT FOUND
   if (!category) {
     return (
       <div className="bg-gray-50 min-h-screen flex items-center justify-center">
@@ -87,6 +88,7 @@ export default function CategoryPage() {
               <span className="text-black font-medium">{category}</span>
             </div>
 
+            {/* Title */}
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
               {category} Articles
             </h1>
