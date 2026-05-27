@@ -44,7 +44,7 @@ export default function CategoryPage() {
     return (
       post.title?.toLowerCase().includes(q) ||
       post.excerpt?.toLowerCase().includes(q) ||
-      (post.tags && post.tags.toLowerCase().includes(q))
+      post.tags?.toLowerCase().includes(q)
     );
   });
 
@@ -57,9 +57,7 @@ export default function CategoryPage() {
     return (
       <div className="bg-gray-50 min-h-screen flex items-center justify-center">
         <div className="text-center px-4">
-          <h1 className="text-3xl font-bold text-slate-800 mb-4">
-            Category Not Found
-          </h1>
+          <h1 className="text-3xl font-bold text-slate-800 mb-4">Category Not Found</h1>
           <Link
             to="/blog"
             className="inline-flex items-center gap-2 text-sm font-semibold hover:underline"
@@ -77,7 +75,7 @@ export default function CategoryPage() {
       <SEO pageType="category" slug={slug} />
 
       <div className="bg-gray-50 min-h-screen">
-        {/* HERO */}
+        {/* HERO SECTION */}
         <section className="bg-white border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 py-12">
             {/* Breadcrumb */}
@@ -97,13 +95,16 @@ export default function CategoryPage() {
               Explore the latest guides, tips, and insights about {category.toLowerCase()}.
             </p>
 
-            {/* Search */}
+            {/* Search Form */}
             <form
               onSubmit={handleSearch}
               className="mt-8 flex flex-col sm:flex-row gap-3 max-w-xl"
             >
               <div className="relative flex-1">
-                <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <Search
+                  size={18}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                />
                 <input
                   type="text"
                   value={inputVal}
@@ -112,6 +113,7 @@ export default function CategoryPage() {
                   className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500"
                 />
               </div>
+
               <button
                 type="submit"
                 className="px-8 py-3 rounded-xl bg-black text-white font-semibold hover:bg-gray-800 transition"
@@ -122,7 +124,7 @@ export default function CategoryPage() {
           </div>
         </section>
 
-        {/* Posts Grid */}
+        {/* POSTS SECTION */}
         <section className="max-w-7xl mx-auto px-4 py-12">
           {isLoading ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -140,6 +142,7 @@ export default function CategoryPage() {
               <div className="mb-8 text-sm text-gray-500">
                 Showing {filtered.length} article{filtered.length !== 1 ? 's' : ''}
               </div>
+
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filtered.map((post) => (
                   <PostCard key={post.id} post={post} />
